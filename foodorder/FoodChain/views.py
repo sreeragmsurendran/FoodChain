@@ -4,7 +4,7 @@ from .models import Dishes,Place,Restorent
 # Create your views here.
 class DishLstView(ListView):
     model = Dishes
-    template_name ='dishesl.html'
+    template_name ='FoodChain/dishesl.html'
     context_object_name = 'dishlist'
     def get_queryset(self):
         return Dishes.objects.all()
