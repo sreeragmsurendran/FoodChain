@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 # Create your models here.
@@ -15,19 +16,27 @@ class Dishes(models.Model):
 
 
 class Place(models.Model):
-    Pin = models.IntegerField("Place ID", primary_key=True)
+    def validate(x):
+        if len(str(x)) != 6:
+            raise ValidationError("PIN number must be 6 digit number")
+
+    Pin = models.IntegerField("Place ID", primary_key=True, validators=[validate])
     p_name = models.CharField("Place Name", max_length=20)
 
     def __str__(self):
-        return self.p_name
+        return '{}-{}'.format(self.p_name, self.Pin)
 
 
 class Address(models.Model):
+    def validate(x):
+        if len(str(x)) != 6:
+            raise ValidationError("PIN number must be 6 digit number")
+
     housename = models.CharField("House Name", max_length=50)
     district = models.CharField("District", max_length=20)
     village = models.CharField("Vilage", max_length=20)
     landmark = models.CharField("Landmark", max_length=50)
-    pincode = models.IntegerField("PIN code")
+    pincode = models.IntegerField("PIN code", validators=[validate])
 
     def __str__(self):
         return self.housename

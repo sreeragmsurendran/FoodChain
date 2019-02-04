@@ -2,6 +2,7 @@
 {% extends "base_generic.html" %}
 {% block content %}
 <h1>{{ restd.r_name }}</h1>
+<p>{{restd.r_place }}</p>
 <h3><strong>Availabe Dishes</strong> </h3>
 <ul>
  {% for dish in restd.dishes.all %}
