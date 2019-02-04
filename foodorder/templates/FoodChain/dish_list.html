@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Dishes</h1>
+  {% if dishlist %}
+  <ul>
+    {% for dish in dishlist %}
+      <li>
+        <a href="{% url 'foodchain:dishdetails' dish.pk %}">{{ dish.d_name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no dishes.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>{{ restd.r_name }}</h1>
+<h3><strong>Availabe Dishes</strong> </h3>
+<ul>
+ {% for dish in restd.dishes.all %}
+    <li>
+         <a href="{% url 'foodchain:dishdetails' dish.pk %}">{{ dish.d_name}}</a>
+
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

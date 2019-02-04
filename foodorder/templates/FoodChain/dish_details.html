@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>{{ dishd.d_name }}</h1>
+<p>{{ dishd.price }}</p>
+<ul>
+ {% for restaurent in dishd.restorent_set.all %}
+<li>
+    <a href="{% url 'foodchain:restaurentDetails' restaurent.pk %}">{{ restaurent.r_name}}</a>
+        </li>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

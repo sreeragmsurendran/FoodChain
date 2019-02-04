@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>{{ placed.p_name }}</h1>
+<h3>Available Restaurents</h3>
+<ul>
+ {% for restaurent in placed.restorent_set.all %}
+    <li>
+         <a href="{% url 'foodchain:restaurentDetails' restaurent.pk %}">{{ restaurent.r_name}}</a>
+        </li>
+{% endfor %}
+</ul>
+{% endblock %}

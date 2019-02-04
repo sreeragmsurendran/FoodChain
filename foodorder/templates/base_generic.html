@@ -20,9 +20,9 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="#">Home</a></li>
-         <li><a href="#">DISHES</a></li>
-        <li><a href="#">RESTAURENTS</a></li>
-      <li><a href="#">PLACES</a></li>
+         <li><a href="{% url 'foodchain:dishlist' %}">DISHES</a></li>
+        <li><a href="{% url 'foodchain:restorents' %}">RESTAURENTS</a></li>
+      <li><a href="{% url 'foodchain:places' %}">PLACES</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

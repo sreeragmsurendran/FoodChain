@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Restaurents</h1>
+  {% if restlist %}
+  <ul>
+    {% for rest in restlist %}
+      <li>
+        <a href="{% url 'foodchain:restaurentDetails' rest.pk %}">{{ rest.r_name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no Restaurent.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Places</h1>
+  {% if placelist %}
+  <ul>
+    {% for place in placelist %}
+      <li>
+        <a href="{% url 'foodchain:placedetails' place.pk %}">{{ place.p_name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no place</p>
+  {% endif %}
+{% endblock %}
