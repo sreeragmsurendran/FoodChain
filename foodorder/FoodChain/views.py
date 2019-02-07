@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Dishes, Place, Restorent
+from .models import Dishes, Place,Restorent,DishOrder
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+
 
 # Create your views here.
 class DishLstView(LoginRequiredMixin, ListView):
@@ -54,5 +55,4 @@ class UserpDetailedView(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'FoodChain/user_details.html'
     context_object_name = 'userp'
-    def calc(self):
-        User.objects.get( pk=pk)
+
