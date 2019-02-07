@@ -10,5 +10,5 @@ urlpatterns = [
     path('dishes/<int:pk>/',DishDetailedView.as_view(),name='dishdetails'),
     path('place/<int:pk>/',PlaceDetailedView.as_view(),name='placedetails'),
     path('restaurent/<int:pk>/',RestDetailedView.as_view(),name='restaurentDetails'),
-
+    path('user/<int:pk>/',UserpDetailedView.as_view(),name='userp'),
 ]

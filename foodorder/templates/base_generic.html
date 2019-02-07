@@ -24,12 +24,16 @@
          <li><a href="{% url 'foodchain:dishlist' %}">DISHES</a></li>
         <li><a href="{% url 'foodchain:restorents' %}">RESTAURENTS</a></li>
       <li><a href="{% url 'foodchain:places' %}">PLACES</a></li>
+        <li><a href="{% url 'foodchain:userp' user.id %}">PROFILE</a></li>
     </ul>
       {% endif %}
     <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'logout'%}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+        {% else %}
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="{% url 'login'%}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="{% url 'logout'%}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+      {% endif %}
     </ul>
   </div>
 

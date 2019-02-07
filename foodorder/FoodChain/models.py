@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Create your models here.
@@ -53,17 +54,21 @@ class Restorent(models.Model):
         return self.r_name
 
 
-class DishOrder(models.Model):
-    O_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    dish = models.ForeignKey(Dishes, on_delete=models.CASCADE)
+'''class UserProfile(User):
 
-    def __str__(self):
-        return '{}-{}'.format(self.O_id, self.dish)
-
-
-class UserProfile(User):
     DelivaryAddress = models.OneToOneField(Address, on_delete=models.CASCADE, verbose_name="Delivery Address")
     image = models.ImageField("Profile", blank=True, upload_to='pro_pic/', default='pro_pic/Non_pic/download.jpg')
 
     def __str__(self):
-        return self.username
+        return self.username'''
+
+
+class DishOrder(models.Model):
+    O_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    dish = models.OneToOneField(Dishes, on_delete=models.CASCADE)
+    quantity = models.IntegerField("Qty", validators=[MaxValueValidator(99), MinValueValidator(1)], default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    restaurent = models.OneToOneField(Restorent, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}-{}'.format(self.O_id, self.dish)
