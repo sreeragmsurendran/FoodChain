@@ -65,10 +65,10 @@ class Restorent(models.Model):
 
 class DishOrder(models.Model):
     O_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    dish = models.OneToOneField(Dishes, on_delete=models.CASCADE)
+    dish = models.ForeignKey(Dishes, on_delete=models.CASCADE)
     quantity = models.IntegerField("Qty", validators=[MaxValueValidator(99), MinValueValidator(1)], default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    restaurent = models.OneToOneField(Restorent, on_delete=models.CASCADE)
+    restaurent = models.ForeignKey(Restorent, on_delete=models.CASCADE)
 
     def __str__(self):
         return '{}-{}'.format(self.O_id, self.dish)

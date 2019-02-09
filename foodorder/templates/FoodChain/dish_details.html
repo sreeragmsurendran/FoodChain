@@ -6,9 +6,9 @@
 <ul>
  {% for restaurent in dishd.restorent_set.all %}
 <li>
-    <a href="{% url 'foodchain:restaurentDetails' restaurent.pk %}">{{ restaurent.r_name}}</a>
+    <a href="{% url 'foodchain:restaurentDetails' pk=restaurent.pk %}">{{ restaurent.r_name}}</a>
         </li>
-</li>
 {% endfor %}
 </ul>
+<a class="btn" href="{% url 'foodchain:dishcreate' pk=dishd.pk %}">Add to cart</a>
 {% endblock %}
