@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div>
+  <h1>Dishes</h1>
+  <ul>
+    {% for d in di %}
+      <li>
+        <a href="{% url 'foodchain:dishdetails' d.pk %}">{{ d.d_name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<div>
+<ul>
+     <h1>Restaurents</h1>
+    {% for r in rest %}
+      <li>
+        <a href="{% url 'foodchain:restaurentDetails' r.pk %}">{{ r.r_name }}</a>
+      </li>
+    {% endfor %}
+
+</ul>
+</div>
+{% endblock %}
