@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from django.views.generic import ListView, DetailView, CreateView,TemplateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from .models import Dishes, Place, Restorent, DishOrder
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -9,6 +9,7 @@ from .forms import OrderCreate, RestCreate
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -101,7 +102,7 @@ def rest_create(request, pk):
     if request.method == 'POST':
         order = RestCreate(request.POST, list1=listt)
         if order.is_valid():
-            dishorder.quantity= order.cleaned_data['quantity']
+            dishorder.quantity = order.cleaned_data['quantity']
             dishorder.dish = order.cleaned_data['dish']
             dishorder.restaurent = Restorent.objects.get(pk=pk)
             dishorder.user = User.objects.get(id=userid)
@@ -131,9 +132,8 @@ def signup(request):
         return render(request, 'registration/signup.html', {'form': form})
 
 
+@login_required
 def homepage(request):
-    dlist=Dishes.objects.all()[:5]
-    rlist=Restorent.objects.all()[:5]
-    return render(request, 'FoodChain/home.html',{'di':dlist,'rest':rlist})
-
-
+    dlist = Dishes.objects.all()[:5]
+    rlist = Restorent.objects.all()[:5]
+    return render(request, 'FoodChain/home.html', {'di': dlist, 'rest': rlist})
