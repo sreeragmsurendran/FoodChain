@@ -5,12 +5,14 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
+
 # Create your models here.
 class Dishes(models.Model):
     d_id = models.IntegerField("Dish ID", primary_key=True)
     d_name = models.CharField("Dishes name", max_length=20)
     price = models.IntegerField("Prices")
     status = models.BooleanField()
+    image = models.ImageField(null=True, upload_to="media/dish_pic/")
 
     def __str__(self):
         return self.d_name
@@ -49,6 +51,7 @@ class Restorent(models.Model):
     r_place = models.ForeignKey(Place, on_delete=models.CASCADE)
     dishes = models.ManyToManyField(Dishes)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, verbose_name='Address', null=True)
+    image_resr = models.ImageField(null=True,default='media/pro_pic/Non_pic/download.jpj/',upload_to="media/rest_pic/")
 
     def __str__(self):
         return self.r_name

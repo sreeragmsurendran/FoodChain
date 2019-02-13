@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import DishOrder, Dishes, Restorent
 
@@ -17,6 +18,14 @@ class OrderCreate(forms.ModelForm):
             'quantity',
             'restaurent',
         )
+
+
+class UserCreationForm(UserCreationForm):
+
+    def __init__(self, *args, **kwargs):
+        var = kwargs.pop('list1')
+        super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['group'] = forms.ModelChoiceField(queryset=var)
 
 
 class RestCreate(forms.ModelForm):

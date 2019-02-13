@@ -3,11 +3,11 @@ from django.views import generic
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from .models import Dishes, Place, Restorent, DishOrder
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from .forms import OrderCreate, RestCreate
 
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from .forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -116,19 +116,22 @@ def rest_create(request, pk):
 
 
 def signup(request):
+    var = Group.objects.all()
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCreationForm(request.POST,list1=var)
         if form.is_valid():
             form.save()
             u = form.cleaned_data.get('username')
             p = form.cleaned_data.get('password1')
             user = authenticate(username=u, password=p)
+            user.groups.add(form.cleaned_data['group'])
             login(request, user)
             return redirect('foodchain:dishlist')
         else:
             return render(request, 'registration/signup.html', {'form': form})
     else:
-        form = UserCreationForm()
+
+        form = UserCreationForm(list1=var)
         return render(request, 'registration/signup.html', {'form': form})
 
 

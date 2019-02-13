@@ -7,8 +7,7 @@
   <ul>
     {% for d in di %}
       <li>
-        <a href="{% url 'foodchain:dishdetails' d.pk %}">{{ d.d_name }}</a>
-      </li>
+        <a href="{% url 'foodchain:dishdetails' d.pk %}">{{ d.d_name }}</a> </li>
     {% endfor %}
   </ul>
 </div>
@@ -17,9 +16,10 @@
      <h1>Restaurents</h1>
     {% for r in rest %}
       <li>
-        <a href="{% url 'foodchain:restaurentDetails' r.pk %}">{{ r.r_name }}</a>
+        <a href="{% url 'foodchain:restaurentDetails' r.pk %}">{{ r.r_name }} </a>
       </li>
     {% endfor %}
+{% for %}
 
 </ul>
 </div>

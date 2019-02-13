@@ -2,10 +2,10 @@
 {% extends "base_generic.html" %}
 {% block content %}
  <div class="jumbotron text-center">
-     <p> User Login</p>
+     <p> Restaurent Login</p>
 <div class="container text center">
     {% if next %}
-       {% if user.is_authenticated %}
+       {% if Restaurents.is_authenticated %}
             <p>Your accounts is not in this group</p>
         {% else %}
     {% endif %}
