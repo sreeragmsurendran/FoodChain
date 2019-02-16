@@ -19,9 +19,9 @@ user name {{ userp.username }}
 <div class ="divcol">
     <p>Order ID{{ i.O_id }}</p>
    <p>Dish Name{{ i.dish }}</p>
-    <p>Unit Price{{ i.dish.price }}</p>
+    <p>Unit Price{{ i.dishitem.price }}</p>
     <p>Quantity{{ i.quantity }}</p>
-     {% widthratio i.quantity 1 i.dish.price %}
+     {% widthratio i.quantity 1 i.dishitem.price %}
     </div>
 </div>
 {% endfor %}

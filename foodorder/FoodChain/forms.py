@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import DishOrder, Dishes, Restorent
+from .models import DishOrder, Dish, Restorent, Customer
 
 
 class OrderCreate(forms.ModelForm):
@@ -20,13 +20,14 @@ class OrderCreate(forms.ModelForm):
         )
 
 
-class UserCreationForm(UserCreationForm):
-
-    def __init__(self, *args, **kwargs):
-        var = kwargs.pop('list1')
-        super(UserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['group'] = forms.ModelChoiceField(queryset=var)
-
+class CustomerCreation(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields =(
+            'DelivaryAddress',
+            'image',
+            'phono',
+        )
 
 class RestCreate(forms.ModelForm):
 
@@ -34,11 +35,11 @@ class RestCreate(forms.ModelForm):
         pk1 = kwargs.pop('list1')
 
         super(RestCreate, self).__init__(*args, **kwargs)
-        self.fields['dish'] = forms.ModelChoiceField(queryset=pk1)
+        self.fields['dishitem'] = forms.ModelChoiceField(queryset=pk1)
 
     class Meta:
         model = DishOrder
         fields = (
             'quantity',
-            'dish',
+            'dishitem',
         )

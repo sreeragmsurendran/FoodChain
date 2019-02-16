@@ -5,9 +5,9 @@
 <p>{{restd.r_place }}</p>
 <h3><strong>Availabe Dishes</strong> </h3>
 <ul>
- {% for dish in restd.dishes.all %}
+ {% for dishitem in restd.dishitem_set.all %}
     <li>
-         <a href="{% url 'foodchain:dishdetails' dish.pk %}">{{ dish.d_name}}</a>
+         <a href="{% url 'foodchain:dishdetails' dishitem.pk %}">{{ dishitem.dish.d_name}}</a>
 
     </li>
 {% endfor %}

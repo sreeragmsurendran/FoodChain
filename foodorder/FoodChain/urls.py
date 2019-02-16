@@ -16,5 +16,6 @@ urlpatterns = [
     path('restorder/<int:pk>/', rest_create, name='restcreate'),
     path('signup/',signup,name='signup1'),
     path('home/',homepage ,name='homein'),
+    path('customercreate/<int:pk>',customerCreate,name='customercreate')
      ]
 

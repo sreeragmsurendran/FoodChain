@@ -15,11 +15,13 @@
 <ul>
      <h1>Restaurents</h1>
     {% for r in rest %}
+    <div>
       <li>
         <a href="{% url 'foodchain:restaurentDetails' r.pk %}">{{ r.r_name }} </a>
       </li>
+    </div>
     {% endfor %}
-{% for %}
+
 
 </ul>
 </div>
