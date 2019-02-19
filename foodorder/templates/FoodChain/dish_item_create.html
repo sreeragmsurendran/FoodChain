@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn">Item create</button>
+</form>
+{% endblock %}

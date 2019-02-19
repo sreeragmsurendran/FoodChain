@@ -3,10 +3,13 @@
 
 {% block content %}
 <p>Enter the Customer Details</p>
-<div class="container text-center" >
-    <form method="post">
+<div class="container" >
+    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+        <h2>Personal details</h2>
+        {{ formc.as_p }}
+        <h2> Delivery Details</h2>
+        {{ forma.as_p }}
     <button type="submit">Create</button>
   </form>
 </div>
