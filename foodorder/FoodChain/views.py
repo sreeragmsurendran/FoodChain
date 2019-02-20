@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
-from .models import Dish, Place, Restorent, DishOrder, DishItem, Customer, Address
+from .models import Dish, Place, Restorent, DishOrder, DishItem, Customer, Address, RestaurantOrder
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
 from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate
@@ -130,7 +130,7 @@ def signup(request):
             p = form.cleaned_data.get('password1')
             user = authenticate(username=u, password=p)
             user.groups.add(Group.objects.get(name='Customers'))
-            login(request, user)
+
             return redirect('foodchain:customercreate', pk=user.id)
         else:
             return render(request, 'registration/signup.html', {'form': form})
@@ -163,7 +163,9 @@ def customerCreate(request, pk):
             cust.DelivaryAddress = addobj
             cust.image = form.cleaned_data['image']
             cust.phono = form.cleaned_data['phono']
-            cust.details = User.objects.get(pk=pk)
+            user = User.objects.get(pk=pk)
+            cust.details =  user
+            login(request, user)
             cust.save()
             return redirect('foodchain:homein')
         else:
@@ -194,4 +196,8 @@ def dish_item_create(request):
         form = DishItemCreate(list1=dishlist)
         return render(request, 'FoodChain/dish_item_create.html', {'form': form})
 
-# {{ perms.FoodChain.change_restorent }}
+
+@permission_required('FoodChain.add_dishitem')
+def rest_order_list(request, pk):
+    rest = Restorent.objects.get(pk=pk).restaurantorder_set.all()
+    return render(request, 'FoodChain/restaurant_order.html', {'list_order': rest})
