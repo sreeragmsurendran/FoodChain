@@ -64,3 +64,11 @@ class DishItemCreate(forms.ModelForm):
             'price',
             'dish',
         )
+
+class DishItemEdit(forms.ModelForm):
+    class Meta:
+        model= DishItem
+        fields =('name',
+                 'price',
+                 'status',
+                 )

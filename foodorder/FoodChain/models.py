@@ -52,7 +52,7 @@ class Restorent(models.Model):
     dish = models.ManyToManyField(Dish, verbose_name="dishes")
     r_place = models.ForeignKey(Place, on_delete=models.CASCADE)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, verbose_name='Address')
-    image_resr = models.ImageField(null=True, default='rest_pic/default/_9631.jpg/',
+    image_resr = models.ImageField(null=True, default='rest_pic/default/restaurent.jpg/',
                                    upload_to="rest_pic/")
     userdetails = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="userdetails")
 

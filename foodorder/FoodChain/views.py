@@ -4,11 +4,11 @@ from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from .models import Dish, Place, Restorent, DishOrder, DishItem, Customer, Address, RestaurantOrder
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate
+from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate,DishItemEdit
 
 from django.contrib.auth import login, authenticate
 from .forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 
@@ -164,7 +164,7 @@ def customerCreate(request, pk):
             cust.image = form.cleaned_data['image']
             cust.phono = form.cleaned_data['phono']
             user = User.objects.get(pk=pk)
-            cust.details =  user
+            cust.details = user
             login(request, user)
             cust.save()
             return redirect('foodchain:homein')
@@ -201,3 +201,20 @@ def dish_item_create(request):
 def rest_order_list(request, pk):
     rest = Restorent.objects.get(pk=pk).restaurantorder_set.all()
     return render(request, 'FoodChain/restaurant_order.html', {'list_order': rest})
+
+
+def rest_item_list(request, pk):
+    item = Restorent.objects.get(pk=pk).dishitem_set.all()
+    return render(request, 'FoodChain/rest_items_list.html', {'rest_item': item})
+
+
+def rest_edit_dish(request , pk):
+
+    edit = get_object_or_404(DishItem,pk=pk)
+    if request.method == 'POST':
+        form =DishItemEdit(request.POST,instance= edit)
+        if form.is_valid():
+            form.save()
+            return redirect('foodchain:restitemlist')
+        return render(request,'FoodChain/rest_dish_edit.html',{'form' :form})
+

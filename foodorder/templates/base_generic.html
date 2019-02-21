@@ -32,8 +32,8 @@
         {% elif perms.FoodChain.add_dishitem %}
         <ul class="nav navbar-nav">
              <li><a href="{% url 'foodchain:homein'%}">HOME</a></li>
-             <li><a href="{% url 'foodchain:dishlist' %}">Your Dishes</a></li>
-             <li><a href="{% url 'foodchain:restaurentorderlist' user.restorent.pk %}">Orders</a></li>
+             <li><a href="{% url 'foodchain:restitemlist' user.restorent.pk %}">YOUR DISHES</a></li>
+             <li><a href="{% url 'foodchain:restaurentorderlist' user.restorent.pk %}">ORDERS</a></li>
 
             <li><a href="{% url 'foodchain:restaurantprofile' user.restorent.pk %}">PROFILE</a></li>
         </ul>

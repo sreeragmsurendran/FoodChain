@@ -20,5 +20,6 @@ urlpatterns = [
     path('dishitemcreate/', dish_item_create, name='dishitemcreate'),
     path('restaurantprofile/<int:pk>/', RestaurantProfile.as_view(), name='restaurantprofile'),
     path('restorderslist/<int:pk>/', rest_order_list, name='restaurentorderlist'),
+    path('restdishlist/<int:pk>/',rest_item_list,name='restitemlist'),
 ]
 
