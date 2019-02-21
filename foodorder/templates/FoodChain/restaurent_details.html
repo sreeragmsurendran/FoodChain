@@ -12,5 +12,5 @@
     </li>
 {% endfor %}
 </ul>
-<a class="btn" href="{% url 'foodchain:restcreate' pk=restd.pk %}">Purchase</a>
+<a class="btn" href="{% url 'foodchain:restcreate' restd.pk %}">Purchase</a>
 {% endblock %}

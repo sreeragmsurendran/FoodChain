@@ -12,15 +12,41 @@
  </head>
 
 <h1>User Profile</h1>
-user id{{ userp.id }}
-user name {{ userp.username }}
-{% for i in userp.dishorder_set.all %}
+<table class="table">
+    <tr>
+        <td>user id</td>
+        <td>
+            {{ customer.details.id }}</td>
+    </tr>
+    <tr>
+        <td>
+            user name
+        </td>
+        <td>
+            {{ customer.details.username }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Phone number
+        </td>
+        <td>
+            {{ customer.phono }}
+        </td>
+    </tr>
+</table>
+
+<h2>Your orders</h2>
+    {% for i in customer.dishorder_set.all %}
+
+
 <div class="container">
 <div class ="divcol">
-    <p>Order ID{{ i.O_id }}</p>
-   <p>Dish Name{{ i.dish }}</p>
-    <p>Unit Price{{ i.dishitem.price }}</p>
-    <p>Quantity{{ i.quantity }}</p>
+    <p>Order ID {{ i.O_id }}</p>
+   <p>Dish Name {{ i.dishitem }}</p>
+    <p>Restaurent Name  {{ i.restaurent }}</p>
+    <p>Unit Price {{ i.dishitem.price }}</p>
+    <p>Quantity {{ i.quantity }}</p>
      {% widthratio i.quantity 1 i.dishitem.price %}
     </div>
 </div>

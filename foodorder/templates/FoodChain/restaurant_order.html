@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% for order in list_order %}
+    <div class="container">
+        <p>{{ order.dishitem.name }}</p>
+        <p>{{ order.quantity }}</p>
+        <p>{{ order.customer }}</p>
+    </div>
+{% endfor %}
+{% endblock %}
