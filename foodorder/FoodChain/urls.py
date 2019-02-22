@@ -21,5 +21,7 @@ urlpatterns = [
     path('restaurantprofile/<int:pk>/', RestaurantProfile.as_view(), name='restaurantprofile'),
     path('restorderslist/<int:pk>/', rest_order_list, name='restaurentorderlist'),
     path('restdishlist/<int:pk>/',rest_item_list,name='restitemlist'),
+    path('restdishedit/<int:pk>/', rest_edit_dish, name='restdishedit'),
+    path('order_cancel_customer/<pk>',deleteorder,name='dishitemdelete'),
 ]
 

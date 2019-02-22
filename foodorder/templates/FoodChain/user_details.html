@@ -48,6 +48,7 @@
     <p>Unit Price {{ i.dishitem.price }}</p>
     <p>Quantity {{ i.quantity }}</p>
      {% widthratio i.quantity 1 i.dishitem.price %}
+    <a class="btn btn-primary" href="{% url 'foodchain:dishitemdelete' i.O_id %}">Cancel</a>
     </div>
 </div>
 {% endfor %}

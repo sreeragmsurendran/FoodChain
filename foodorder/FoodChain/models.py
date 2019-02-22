@@ -99,7 +99,7 @@ class DishOrder(models.Model):
 class RestaurantOrder(models.Model):
     restorderid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     restaurant = models.ForeignKey(Restorent, verbose_name='Restaurant', on_delete=models.CASCADE)
-    dishitem = models.OneToOneField(DishItem, verbose_name='Dishitem', on_delete=models.CASCADE)
+    dishitem = models.ForeignKey(DishItem, verbose_name='Dishitem', on_delete=models.CASCADE)
     quantity = models.IntegerField('Quantity', default=0)
     customer = models.ForeignKey(Customer, verbose_name='Customer', on_delete=models.CASCADE)
     dishorder = models.OneToOneField(DishOrder, verbose_name='Dish order', on_delete=models.CASCADE)

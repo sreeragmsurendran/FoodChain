@@ -3,11 +3,40 @@
 {% block content %}
 {% for item in rest_item %}
     <div class="container">
-        <p>{{ item.name }}</p>
-        <p>{{ item.price }}</p>
-        <p>{{ item.status }}</p>
-        <p>{{ item.dish.d_name }}</p>
-        <img src="{{item.dish.image.url}}" />
+        <div class="jumbotron">
+            <div class="row" >
+                <div class="col-sm-4">
+                    <img src="{{item.dish.image.url}}" class='img-thumbnail' height="200px" width="200px">
+                </div>
+                <div class="col-sm-8">
+                    <p>{{ item.dish.d_name }}</p>
+                    <p>{{ item.price }}</p>
+                  {%  if item.status %}
+                    <p>Available</p>
+                    {% endif %}
+                    <a class="btn btn-primary" href="{% url 'foodchain:restdishedit' item.pk %}"> Update</a>
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>This is a large modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+    </div>
+
     </div>
 {% endfor %}
 

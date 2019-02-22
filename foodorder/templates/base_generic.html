@@ -13,10 +13,10 @@
 
     </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse " >
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">#FoodChain#</a>
+      <a class="navbar-brand" href="{% url 'foodchain:homein'%}">#FoodChain#</a>
     </div>
     {% if user.is_authenticated %}
       {% if perms.FoodChain.add_dishorder %}
@@ -31,10 +31,9 @@
 
         {% elif perms.FoodChain.add_dishitem %}
         <ul class="nav navbar-nav">
-             <li><a href="{% url 'foodchain:homein'%}">HOME</a></li>
+                 <li><a href="{% url 'foodchain:homein' %}">HOME</a></li>
              <li><a href="{% url 'foodchain:restitemlist' user.restorent.pk %}">YOUR DISHES</a></li>
              <li><a href="{% url 'foodchain:restaurentorderlist' user.restorent.pk %}">ORDERS</a></li>
-
             <li><a href="{% url 'foodchain:restaurantprofile' user.restorent.pk %}">PROFILE</a></li>
         </ul>
 
@@ -46,7 +45,7 @@
           <li><a href="{% url 'logout' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
         {% else %}
       <li><a href="{% url 'foodchain:signup1' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="{% url 'login' %}?next=''"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="{% url 'login' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       {% endif %}
     </ul>
   </div>

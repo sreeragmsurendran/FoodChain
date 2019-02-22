@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+{% block content %}
+{% for rest in item %}
+      <li>
+          <p>{{rest.dish.d_name}}</p>
+          <p>{{rest.price}}</p>
+      </li>
+{% endfor %}
+{% endblock %}

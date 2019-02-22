@@ -1,14 +1,15 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
-from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from .models import Dish, Place, Restorent, DishOrder, DishItem, Customer, Address, RestaurantOrder
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate,DishItemEdit
+from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate, DishItemEdit
 
 from django.contrib.auth import login, authenticate
 from .forms import UserCreationForm
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 
@@ -139,8 +140,6 @@ def signup(request):
         form = UserCreationForm()
         return render(request, 'registration/signup.html', {'form': form})
 
-
-@login_required
 def homepage(request):
     dlist = Dish.objects.all()[:5]
     rlist = Restorent.objects.all()[:5]
@@ -202,19 +201,22 @@ def rest_order_list(request, pk):
     rest = Restorent.objects.get(pk=pk).restaurantorder_set.all()
     return render(request, 'FoodChain/restaurant_order.html', {'list_order': rest})
 
-
+@permission_required('FoodChain.add_dishitem')
 def rest_item_list(request, pk):
     item = Restorent.objects.get(pk=pk).dishitem_set.all()
     return render(request, 'FoodChain/rest_items_list.html', {'rest_item': item})
 
+@permission_required('FoodChain.add_dishitem')
+def rest_edit_dish(request, pk):
+    edit = get_object_or_404(DishItem, id=pk)
+    form = DishItemEdit(request.POST or None, instance=edit)
+    if form.is_valid():
+        form.save()
+        return redirect('foodchain:restitemlist', pk=edit.restaurent.pk)
+    return render(request, 'FoodChain/rest_dish_edit.html', {'form': form})
 
-def rest_edit_dish(request , pk):
-
-    edit = get_object_or_404(DishItem,pk=pk)
-    if request.method == 'POST':
-        form =DishItemEdit(request.POST,instance= edit)
-        if form.is_valid():
-            form.save()
-            return redirect('foodchain:restitemlist')
-        return render(request,'FoodChain/rest_dish_edit.html',{'form' :form})
-
+def deleteorder(request, pk):
+    obj = get_object_or_404(DishOrder, O_id=pk)
+    cust = obj.customer.id
+    obj.delete()
+    return redirect('foodchain:customerdet', pk=cust)
