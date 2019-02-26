@@ -4,14 +4,23 @@
 {% block content %}
   <h1>Dishes</h1>
   {% if dishlist %}
-  <ul>
-    {% for dish in dishlist %}
-      <li>
-        <a href="{% url 'foodchain:dishdetails' dish.pk %}">{{ dish.d_name }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-  {% else %}
+  <div class="w3-row-padding w3-margin-top">
+      {% for dish in dishlist %}
+       <div class="w3-third" >
+
+           <div class="w3-card">
+             <a href="{% url 'foodchain:dishdetails' dish.pk %}">
+              <div>
+        <img src="{{dish.image.url}}" class='img-responsive'>
+              </div>
+               <div>{{ dish.d_name }}</div>
+                </a>
+         </div>
+       </div>
+      {% endfor %}
+       </div>
+
+    {% else %}
     <p>There are no dishes.</p>
   {% endif %}
 

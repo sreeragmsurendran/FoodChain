@@ -4,13 +4,23 @@
 {% block content %}
   <h1>Places</h1>
   {% if placelist %}
-  <ul>
+  <div class="w3-row-padding w3-margin-top">
     {% for place in placelist %}
-      <li>
-        <a href="{% url 'foodchain:placedetails' place.pk %}">{{ place.p_name }}</a>
-      </li>
+    <div class="w3-third" >
+
+           <div class="w3-card">
+
+        <a href="{% url 'foodchain:placedetails' place.pk %}">
+           <div>
+      <img src="{{place.p_image.url}}" class='img-responsive'>
+             </div>
+               <div>{{ place.p_name }}</div>
+                </a>
+         </div>
+       </div>
     {% endfor %}
-  </ul>
+  </div>
+
   {% else %}
     <p>There are no place</p>
   {% endif %}

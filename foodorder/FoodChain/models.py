@@ -26,7 +26,8 @@ class Place(models.Model):
 
     Pin = models.IntegerField("Place ID", primary_key=True, validators=[validate])
     p_name = models.CharField("Place Name", max_length=20)
-
+    p_image = models.ImageField(null=True, default='place/place_active/',
+                                   upload_to="place/place_details/place.jpg/")
     def __str__(self):
         return '{}-{}'.format(self.p_name, self.Pin)
 
@@ -53,7 +54,7 @@ class Restorent(models.Model):
     r_place = models.ForeignKey(Place, on_delete=models.CASCADE)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, verbose_name='Address')
     image_resr = models.ImageField(null=True, default='rest_pic/default/restaurent.jpg/',
-                                   upload_to="rest_pic/")
+                                   upload_to="rest_pic/rest_active/")
     userdetails = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="userdetails")
 
     def __str__(self):

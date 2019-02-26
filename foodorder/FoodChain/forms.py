@@ -73,3 +73,17 @@ class DishItemEdit(forms.ModelForm):
             'price',
             'status',
     )
+class DishItemAdd(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        pk1 = kwargs.pop('listd')
+
+        super(DishItemAdd, self).__init__(*args, **kwargs)
+        self.fields['dish'] = forms.ModelChoiceField(queryset=pk1)
+
+    class Meta:
+        model = DishItem
+        fields = (
+            'price',
+            'dish',
+            'status',
+        )

@@ -11,7 +11,7 @@ urlpatterns = [
     path('dishes/<int:pk>/', DishDetailedView.as_view(),name='dishdetails'),
     path('place/<int:pk>/', PlaceDetailedView.as_view(),name='placedetails'),
     path('restaurent/<int:pk>/', RestDetailedView.as_view(),name='restaurentDetails'),
-    path('customer/<int:pk>/', CustomerDetailedView.as_view(), name='customerdet'),
+    path('customer/<int:pk>/', CustomerDetailedView.as_view(),name='customerdet'),
     path('dishorder/<int:pk>/', order_create, name='dishcreate'),
     path('restorder/<int:pk>/', rest_create, name='restcreate'),
     path('signup/', signup,name='signup1'),
@@ -23,5 +23,6 @@ urlpatterns = [
     path('restdishlist/<int:pk>/',rest_item_list,name='restitemlist'),
     path('restdishedit/<int:pk>/', rest_edit_dish, name='restdishedit'),
     path('order_cancel_customer/<pk>',deleteorder,name='dishitemdelete'),
+    path('dishitemcreate/',dish_item_add,name='dishitemcreate'),
 ]
 

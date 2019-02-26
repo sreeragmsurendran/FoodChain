@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from .models import Dish, Place, Restorent, DishOrder, DishItem, Customer, Address, RestaurantOrder
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate, DishItemEdit
+from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate, DishItemEdit,DishItemAdd
 
 from django.contrib.auth import login, authenticate
 from .forms import UserCreationForm
@@ -220,3 +220,23 @@ def deleteorder(request, pk):
     cust = obj.customer.id
     obj.delete()
     return redirect('foodchain:customerdet', pk=cust)
+def dish_item_add(request ):
+    item = DishItem()
+    dishlist = dish.all()
+
+    if request.method == 'POST':
+        form = DishItemAdd(request.POST,listd =dishlist)
+        if form.is_valid():
+            form.save()
+            item.name= form.cleaned_data.get('name')
+            item.price= form.cleaned_data.get('price')
+            item.status= form.cleaned_data.get('status')
+
+            item.save()
+            return redirect('foodchain:restitemlist')
+        else:
+            return render('FoodChain/dish_item_create.html/',{'form ':form})
+    else:
+        form = DishItemAdd(listd=dishlist)
+        return render('FoodChain/dish_item_create.html/', {'form ': form})
+
