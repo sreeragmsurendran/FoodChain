@@ -6,12 +6,14 @@
 <a class="btn" href="{% url 'foodchain:restcreate' restd.pk %}">Purchase</a>
 <h3><strong>Availabe Dishes</strong> </h3>
 <ul>
- {% for dishitem in restd.dishitem_set.all %}
+ {% for dishitem in restd.dish_set.all %}
     <div class="w3-third" >
         <div class="w3-card">
-         <a href="{% url 'foodchain:dishdetails' dishitem.pk %}">{{ dishitem.dish.d_name}}</a>
+         <a href="{% url 'foodchain:dishdetails' dish.pk %}">{{ dishitem.d_name}}</a>
 
 
+        </div>
+    </div>
 {% endfor %}
 </ul>
 

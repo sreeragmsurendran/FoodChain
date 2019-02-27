@@ -22,10 +22,18 @@
     </tr>
     <tr>
         <td>
-            user name
+           User Name
         </td>
         <td>
             {{ customer.details.username }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Customer Name
+        </td>
+        <td>
+            {{ customer.name }}
         </td>
     </tr>
     <tr>
@@ -36,6 +44,7 @@
             {{ customer.phono }}
         </td>
     </tr>
+    <a class="btn btn-primary" href="{% url 'foodchain:cust_edit_profile' customer.pk %}"> Edit Profile</a>
 </table>
 </div>
 <div class="col-sm-8">

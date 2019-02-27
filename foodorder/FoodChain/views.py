@@ -5,7 +5,8 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from .models import Dish, Place, Restorent, DishOrder, DishItem, Customer, Address, RestaurantOrder
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate, DishItemEdit
+from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate, DishItemEdit, \
+    RestEditProfile, UserEditProfile
 
 from django.contrib.auth import login, authenticate
 from .forms import UserCreationForm
@@ -93,7 +94,7 @@ def order_create(request, pk):
             dishorder.restaurent = order.cleaned_data['restaurent']
             dishorder.customer = customerid
             dishorder.save()
-            return render(request, 'FoodChain/user_details.html')
+            return redirect('foodchain:customerdet', pk=dishorder.customer.pk)
         else:
             return render(request, 'FoodChain/dishcreate.html', {'form': order})
     else:
@@ -114,7 +115,7 @@ def rest_create(request, pk):
             dishorder.restaurent = Restorent.objects.get(pk=pk)
             dishorder.customer = custid
             dishorder.save()
-            return render(request, 'FoodChain/user_details.html')
+            return redirect('foodchain:customerdet', pk=dishorder.customer.pk)
         else:
             return render(request, 'FoodChain/form_ordeer.html', {'form': order})
     else:
@@ -218,7 +219,7 @@ def deleteorder(request, pk):
     obj.delete()
     return redirect('foodchain:customerdet', pk=cust)
 
-
+@permission_required('FoodChain.add_dishitem')
 def dish_item_add(request):
     if request.method == 'POST':
         item = DishItem()
@@ -235,4 +236,21 @@ def dish_item_add(request):
     else:
         form = DishItemCreate()
         return render(request, 'FoodChain/dish_item_create.html', {'form': form})
+@permission_required('FoodChain.add_dishitem')
+def rest_edit_profile(request, pk):
+    edit = get_object_or_404(Restorent, pk=pk)
+    form = RestEditProfile(request.POST or None, instance=edit)
+    if form.is_valid():
+        form.save()
+        return redirect('foodchain:restaurantprofile', pk=edit.pk)
+    return render(request, 'FoodChain/rest_edit_profile.html', {'form': form})
 
+@permission_required('FoodChain.add_dishorder')
+def cust_edit_profile(request, pk):
+    edit = get_object_or_404(Customer, pk=pk)
+    form = UserEditProfile(request.POST or None, instance=edit)
+    form1 = AddressCreate(request.POST or None, instance=edit.DelivaryAddress)
+    if form.is_valid() and form1.is_valid():
+        form.save()
+        return redirect('foodchain:customerdet', pk=edit.pk)
+    return render(request, 'FoodChain/customer_edit_profile.html', {'form': form, 'form1':form1})

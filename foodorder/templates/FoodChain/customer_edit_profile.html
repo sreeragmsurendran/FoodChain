@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+
+{% block content %}
+<form  method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <h2>Delivary Address</h2>
+    {{ form1.as_p }}
+    <button type="submit" >Update</button>
+
+</form>
+{% endblock %}

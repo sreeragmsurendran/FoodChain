@@ -71,3 +71,20 @@ class DishItemEdit(forms.ModelForm):
             'price',
             'status',
     )
+
+class RestEditProfile(forms.ModelForm):
+    class Meta:
+        model = Restorent
+        fields =(
+            'r_name',
+            'r_place',
+        )
+class UserEditProfile(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields =(
+            'name',
+            'phono',
+            'image'
+        )
+
