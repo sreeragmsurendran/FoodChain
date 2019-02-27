@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+{% block content %}
+{% for item in rest_item %}
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row" >
+                <div class="col-sm-4">
+                    <img src="{{item.dish.image.url}}" class='img-thumbnail' height="200px" width="200px">
+                </div>
+                <div class="col-sm-8">
+                    <p>{{ item.dish.d_name }}</p>
+                    <p>{{ item.price }}</p>
+                  {%  if item.status %}
+                    <p>Available</p>
+                    {% endif %}
+                    <a class="btn btn-primary" href="{% url 'foodchain:restdishedit' item.pk %}"> Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+    <div class="container">
+ <a class="btn btn-primary" href="{% url 'foodchain:dishitemcreate' %}"> Add Item</a>
+    </div>
+
+
+
+{%endblock%}

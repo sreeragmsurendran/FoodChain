@@ -52,15 +52,39 @@ class AddressCreate(forms.ModelForm):
 
 
 class DishItemCreate(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        pk1 = kwargs.pop('list1')
-
-        super(DishItemCreate, self).__init__(*args, **kwargs)
-        self.fields['dish'] = forms.ModelChoiceField(queryset=pk1)
+    dish = forms.ModelChoiceField(queryset=Dish.objects.all())
 
     class Meta:
-        model = DishItem
-        fields = (
+         model = DishItem
+         fields = (
+                    'name',
+                    'price',
+                    'dish',
+            )
+
+
+class DishItemEdit(forms.ModelForm):
+    class Meta:
+        model= DishItem
+        fields =(
+            'name',
             'price',
-            'dish',
+            'status',
+    )
+
+class RestEditProfile(forms.ModelForm):
+    class Meta:
+        model = Restorent
+        fields =(
+            'r_name',
+            'r_place',
         )
+class UserEditProfile(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields =(
+            'name',
+            'phono',
+            'image'
+        )
+

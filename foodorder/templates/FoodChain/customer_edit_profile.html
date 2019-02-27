@@ -2,9 +2,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<form method="post">
+<form  method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn" type="submit">Item create</button>
+    <h2>Delivary Address</h2>
+    {{ form1.as_p }}
+    <button type="submit" >Update</button>
+
 </form>
 {% endblock %}
