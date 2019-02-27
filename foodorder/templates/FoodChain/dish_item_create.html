@@ -2,9 +2,9 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<form action="" method="post">
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn">Item create</button>
+    <button class="btn" type="submit">Item create</button>
 </form>
 {% endblock %}

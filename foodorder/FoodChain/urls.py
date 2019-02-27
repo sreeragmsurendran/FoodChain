@@ -17,12 +17,13 @@ urlpatterns = [
     path('signup/', signup,name='signup1'),
     path('', homepage, name='homein'),
     path('customercreate/<int:pk>', customerCreate, name='customercreate'),
-    path('dishitemcreate/', dish_item_create, name='dishitemcreate'),
+    path('dishitemcreate/', dish_item_add, name='dishitemcreate'),
     path('restaurantprofile/<int:pk>/', RestaurantProfile.as_view(), name='restaurantprofile'),
     path('restorderslist/<int:pk>/', rest_order_list, name='restaurentorderlist'),
     path('restdishlist/<int:pk>/',rest_item_list,name='restitemlist'),
     path('restdishedit/<int:pk>/', rest_edit_dish, name='restdishedit'),
     path('order_cancel_customer/<pk>',deleteorder,name='dishitemdelete'),
-    path('dishitemcreate/',dish_item_add,name='dishitemcreate'),
+    #path('dishitemcreate1/',dish_item_add,name='dishitemcreate1'),
+
 ]
 

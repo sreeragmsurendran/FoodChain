@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from .models import Dish, Place, Restorent, DishOrder, DishItem, Customer, Address, RestaurantOrder
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate, DishItemEdit,DishItemAdd
+from .forms import OrderCreate, RestCreate, CustomerCreation, AddressCreate, DishItemCreate, DishItemEdit
 
 from django.contrib.auth import login, authenticate
 from .forms import UserCreationForm
@@ -76,7 +76,7 @@ class CustomerDetailedView(PermissionRequiredMixin, LoginRequiredMixin, DetailVi
 class RestaurantProfile(PermissionRequiredMixin, DetailView):
     permission_required = 'FoodChain.add_dishitem'
     model = Restorent
-    template_name = 'FoodChain/restaurent_profile.html'
+    template_name = 'FoodChain/rest_profile.html'
     context_object_name = 'restaurant'
 
 
@@ -175,27 +175,24 @@ def customerCreate(request, pk):
         return render(request, 'FoodChain/customercreate.html', {'formc': form, 'forma': address})
 
 
-@permission_required('FoodChain.add_dishitem')
-def dish_item_create(request):
-    dishobj = DishItem()
-    res = request.user.restorent
-    dishlist = res.dish.all()
-    if request.method == 'POST':
-
-        form = DishItemCreate(request.POST, list1=dishlist)
-        if form.is_valid():
-            dishobj.restaurent = res
-            dishobj.price = form.cleaned_data['price']
-            dishobj.dish = form.cleaned_data['dish']
-            dishobj.save()
-            return redirect('')
-        else:
-            return render(request, 'FoodChain/dish_item_create.html', {'form': form})
-    else:
-        form = DishItemCreate(list1=dishlist)
-        return render(request, 'FoodChain/dish_item_create.html', {'form': form})
-
-
+# @permission_required('FoodChain.add_dishitem')
+# def dish_item_create(request):
+#     if request.method == 'POST':
+#         item = DishItem()
+#         form = DishItemCreate(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             item.dish = form.cleaned_data.get('dish')
+#             item.price = form.cleaned_data.get('price')
+#             item.name = form.cleaned_data.get('name')
+#             item.restaurent = request.user.restorent
+#             item.save()
+#             return redirect('foodchain:restitemlist', pk=request.user.restorent.pk)
+#         else:
+#             return render(request, 'FoodChain/dish_item_create.html', {'form ': form})
+#     else:
+#         form = DishItemCreate()
+#         return render(request,'FoodChain/dish_item_create.html', {'form ': form})
 @permission_required('FoodChain.add_dishitem')
 def rest_order_list(request, pk):
     rest = Restorent.objects.get(pk=pk).restaurantorder_set.all()
@@ -220,23 +217,22 @@ def deleteorder(request, pk):
     cust = obj.customer.id
     obj.delete()
     return redirect('foodchain:customerdet', pk=cust)
-def dish_item_add(request ):
-    item = DishItem()
-    dishlist = dish.all()
 
+
+def dish_item_add(request):
     if request.method == 'POST':
-        form = DishItemAdd(request.POST,listd =dishlist)
+        item = DishItem()
+        form = DishItemCreate(request.POST)
         if form.is_valid():
-            form.save()
-            item.name= form.cleaned_data.get('name')
+            item.dish = form.cleaned_data.get('dish')
             item.price= form.cleaned_data.get('price')
-            item.status= form.cleaned_data.get('status')
-
+            item.name= form.cleaned_data.get('name')
+            item.restaurent = request.user.restorent
             item.save()
-            return redirect('foodchain:restitemlist')
+            return redirect('foodchain:restitemlist',pk=request.user.restorent.pk )
         else:
-            return render('FoodChain/dish_item_create.html/',{'form ':form})
+            return render(request, 'FoodChain/dish_item_create.html',{'form':form})
     else:
-        form = DishItemAdd(listd=dishlist)
-        return render('FoodChain/dish_item_create.html/', {'form ': form})
+        form = DishItemCreate()
+        return render(request, 'FoodChain/dish_item_create.html', {'form': form})
 

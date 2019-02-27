@@ -26,8 +26,7 @@ class Place(models.Model):
 
     Pin = models.IntegerField("Place ID", primary_key=True, validators=[validate])
     p_name = models.CharField("Place Name", max_length=20)
-    p_image = models.ImageField(null=True, default='place/place_active/',
-                                   upload_to="place/place_details/place.jpg/")
+    p_image = models.ImageField(null=True, default='place/place_active/',upload_to="place/place_details/place.jpg/")
     def __str__(self):
         return '{}-{}'.format(self.p_name, self.Pin)
 
