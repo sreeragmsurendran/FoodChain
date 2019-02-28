@@ -1,68 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
+{% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
+  <head>
+    <title>Colorlib Diner</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:300,400,700,800|Open+Sans:300,400,700" rel="stylesheet">
 
+    <link rel="stylesheet" href="{% static 'css/foodorder/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/foodorder/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/foodorder/css/owl.carousel.min.css' %}">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap-theme.min.css" integrity="sha384-jzngWsPS6op3fgRCDTESqrEJwRKck+CILhJVO5VvaAZCq8JYf8HsR/HPpBOOPZfR" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/foodorder/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/foodorder/css/aos.css' %}">
 
-<!-- Latest compiled and minified JavaScript -->
+    <link rel="stylesheet" href="{% static 'css/foodorder/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/foodorder/css/jquery.timepicker.css' %}">
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/foodorder/fonts/ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/foodorder/fonts/fontawesome/css/font-awesome.min.css' %}">
 
-    </head>
-<body>
-<nav class="navbar navbar-inverse " >
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'foodchain:homein'%}">#FoodChain#</a>
-    </div>
-    {% if user.is_authenticated %}
-      {% if perms.FoodChain.add_dishorder %}
+    <link rel="stylesheet" href="{% static 'css/foodorder/fonts/flaticon/font/flaticon.css' %}">
 
-    <ul class="nav navbar-nav">
-      <li><a href="{% url 'foodchain:homein'%}">HOME</a></li>
-         <li><a href="{% url 'foodchain:dishlist' %}">DISHES</a></li>
-        <li><a href="{% url 'foodchain:restorents' %}">RESTAURENTS</a></li>
-      <li><a href="{% url 'foodchain:places' %}">PLACES</a></li>
-        <li><a href="{% url 'foodchain:customerdet' user.customer.pk %}">PROFILE</a></li>
-    </ul>
-
-        {% elif perms.FoodChain.add_dishitem %}
-        <ul class="nav navbar-nav">
-                 <li><a href="{% url 'foodchain:homein' %}">HOME</a></li>
-             <li><a href="{% url 'foodchain:restitemlist' user.restorent.pk %}">YOUR DISHES</a></li>
-             <li><a href="{% url 'foodchain:restaurentorderlist' user.restorent.pk %}">ORDERS</a></li>
-            <li><a href="{% url 'foodchain:restaurantprofile' user.restorent.pk %}">PROFILE</a></li>
-        </ul>
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="{% static 'css/foodorder/css/style.css' %}">
 
 
-      {% endif %}
-    {% endif %}
-    <ul class="nav navbar-nav navbar-right">
-        {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
-        {% else %}
-      <li><a href="{% url 'foodchain:signup1' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="{% url 'login' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      {% endif %}
-    </ul>
-  </div>
 
-</nav>
- <div class="container">
+  </head>
+  <body>
+
+
+
+
+    <div class="site-wrap">
+      <nav class="site-menu">
+        <div class="site-menu-inner">
+          <ul class="list-unstyled">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="menu.html">Our Menu</a></li>
+            <li><a href="blog.html">Our Blog</a></li>
+            <li><a href="reservation.html">Reserve A Table</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+	</div>
      {% block content %}
+		{% endblock %}
+
+  <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+
+    <script src="{% static 'css/foodorder/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'css/foodorder/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'css/foodorder/js/popper.min.js' %}"></script>
+    <script src="{% static 'css/foodorder/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'css/foodorder/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'css/foodorder/js/jquery.waypoints.min.js' %}"></script>
+
+    <script src="{% static 'css/foodorder/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'css/foodorder/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'css/foodorder/js/jquery.stellar.min.js' %}"></script>
+
+    <script src="{% static 'css/foodorder/js/aos.js' %}"></script>
 
 
-     {% endblock %}
- </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
-</body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+
+    <script src="{% static 'css/foodorder/js/main.js' %}"></script>
+
+  </body>
+
 </html>
