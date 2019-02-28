@@ -1,0 +1,75 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<head>
+    <style>
+        .divcol{
+         margin :10px;
+         background-color:yellow;
+              }
+
+    </style>
+ </head>
+
+<h1>Restaurent Profile</h1>
+<div class="col-sm-4">
+ <img src="{{ restaurant.image.url }}" class="img-circle" alt="Cinque Terre" width="304" height="236">
+<table class="table">
+    <tr>
+        <td>Restaurent id</td>
+        <td>
+            {{ restaurant.r_id}}</td>
+    </tr>
+    <tr>
+        <td>
+            Restaurent name
+        </td>
+        <td>
+            {{ restaurant.r_name }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Place
+        </td>
+        <td>
+            {{ restaurant.r_place}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+           House Name
+        </td>
+        <td>
+            {{ restaurant.address.housename }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+           district
+        </td>
+        <td>
+            {{ restaurant.address.district }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            village
+        </td>
+        <td>
+            {{ restaurant.address.village}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            pincode
+        </td>
+        <td>
+            {{ restaurant.address.pincode}}
+        </td>
+    </tr>
+
+</table>
+<a class="btn btn-primary" href="{% url 'foodchain:rest_edit_profile' restaurant.pk %}"> Edit Profile</a>
+</div>
+
+{% endblock %}

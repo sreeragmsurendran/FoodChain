@@ -3,14 +3,18 @@
 {% block content %}
 <h1>{{ restd.r_name }}</h1>
 <p>{{restd.r_place }}</p>
+<a class="btn" href="{% url 'foodchain:restcreate' restd.pk %}">Purchase</a>
 <h3><strong>Availabe Dishes</strong> </h3>
 <ul>
- {% for dishitem in restd.dishitem_set.all %}
-    <li>
-         <a href="{% url 'foodchain:dishdetails' dishitem.pk %}">{{ dishitem.dish.d_name}}</a>
+ {% for dishitem in restd.dish_set.all %}
+    <div class="w3-third" >
+        <div class="w3-card">
+         <a href="{% url 'foodchain:dishdetails' dish.pk %}">{{ dishitem.d_name}}</a>
 
-    </li>
+
+        </div>
+    </div>
 {% endfor %}
 </ul>
-<a class="btn" href="{% url 'foodchain:restcreate' restd.pk %}">Purchase</a>
+
 {% endblock %}

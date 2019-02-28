@@ -5,18 +5,22 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap-theme.min.css" integrity="sha384-jzngWsPS6op3fgRCDTESqrEJwRKck+CILhJVO5VvaAZCq8JYf8HsR/HPpBOOPZfR" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse " >
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">#FoodChain#</a>
+      <a class="navbar-brand" href="{% url 'foodchain:homein'%}">#FoodChain#</a>
     </div>
     {% if user.is_authenticated %}
       {% if perms.FoodChain.add_dishorder %}
@@ -31,10 +35,9 @@
 
         {% elif perms.FoodChain.add_dishitem %}
         <ul class="nav navbar-nav">
-             <li><a href="{% url 'foodchain:homein'%}">HOME</a></li>
-             <li><a href="{% url 'foodchain:dishlist' %}">Your Dishes</a></li>
-             <li><a href="{% url 'foodchain:restaurentorderlist' user.restorent.pk %}">Orders</a></li>
-
+                 <li><a href="{% url 'foodchain:homein' %}">HOME</a></li>
+             <li><a href="{% url 'foodchain:restitemlist' user.restorent.pk %}">YOUR DISHES</a></li>
+             <li><a href="{% url 'foodchain:restaurentorderlist' user.restorent.pk %}">ORDERS</a></li>
             <li><a href="{% url 'foodchain:restaurantprofile' user.restorent.pk %}">PROFILE</a></li>
         </ul>
 
@@ -43,10 +46,10 @@
     {% endif %}
     <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}?next={% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+          <li><a href="{% url 'logout' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
         {% else %}
       <li><a href="{% url 'foodchain:signup1' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="{% url 'login' %}?next={% url 'foodchain:homein'%}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="{% url 'login' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       {% endif %}
     </ul>
   </div>
@@ -58,5 +61,8 @@
 
      {% endblock %}
  </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
 </body>
 </html>

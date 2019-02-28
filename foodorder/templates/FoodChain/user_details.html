@@ -12,6 +12,8 @@
  </head>
 
 <h1>User Profile</h1>
+<div class="col-sm-4">
+ <img src="{{ customer.image.url }}" class="img-circle" alt="Cinque Terre" width="304" height="236">
 <table class="table">
     <tr>
         <td>user id</td>
@@ -20,10 +22,18 @@
     </tr>
     <tr>
         <td>
-            user name
+           User Name
         </td>
         <td>
             {{ customer.details.username }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Customer Name
+        </td>
+        <td>
+            {{ customer.name }}
         </td>
     </tr>
     <tr>
@@ -34,9 +44,11 @@
             {{ customer.phono }}
         </td>
     </tr>
+    <a class="btn btn-primary" href="{% url 'foodchain:cust_edit_profile' customer.pk %}"> Edit Profile</a>
 </table>
-
-<h2>Your orders</h2>
+</div>
+<div class="col-sm-8">
+<h2 align="center">Your orders</h2>
     {% for i in customer.dishorder_set.all %}
 
 
@@ -48,7 +60,9 @@
     <p>Unit Price {{ i.dishitem.price }}</p>
     <p>Quantity {{ i.quantity }}</p>
      {% widthratio i.quantity 1 i.dishitem.price %}
+    <a class="btn btn-primary" href="{% url 'foodchain:dishitemdelete' i.O_id %}">Cancel</a>
     </div>
+</div>
 </div>
 {% endfor %}
 {% endblock %}
