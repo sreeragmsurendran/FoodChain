@@ -5,20 +5,35 @@
   <h1>Dishes</h1>
   {% if dishlist %}
   <div class="w3-row-padding w3-margin-top">
+      <div class="container-fluid">
       {% for dish in dishlist %}
-       <div class="w3-third" >
 
-           <div class="w3-card">
-             <a href="{% url 'foodchain:dishdetails' dish.pk %}">
-              <div>
-        <img src="{{dish.image.url}}" class='img-responsive'>
-              </div>
-               <div>{{ dish.d_name }}</div>
-                </a>
-         </div>
-       </div>
+                  <div class="row">
+                    <div class=" col-xs-12">
+                      <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h2><strong>{{ dish.d_name }}</strong></h2>
+                        </div>
+                        <div class="panel-body">
+                          <a href="{% url 'foodchain:dishdetails' dish.pk %}">
+                              <div>
+                        <img src="{{dish.image.url}}" class='img-responsive'>
+                              </div>
+                                </a>
+                        </div>
+                        </div>
+                      </div>
+                         <img src="{{i.dish.image.url}}" class='img-responsive'>
+                    </div>
+
+
+
+
+
+
       {% endfor %}
        </div>
+                  </div>
 
     {% else %}
     <p>There are no dishes.</p>

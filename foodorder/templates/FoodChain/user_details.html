@@ -5,64 +5,92 @@
     <style>
         .divcol{
          margin :10px;
-         background-color:yellow;
+        background-image: url("paper.gif");
               }
 
     </style>
+
  </head>
 
 <h1>User Profile</h1>
-<div class="col-sm-4">
- <img src="{{ customer.image.url }}" class="img-circle" alt="Cinque Terre" width="304" height="236">
-<table class="table">
-    <tr>
-        <td>user id</td>
-        <td>
-            {{ customer.details.id }}</td>
-    </tr>
-    <tr>
-        <td>
-           User Name
-        </td>
-        <td>
-            {{ customer.details.username }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-           Customer Name
-        </td>
-        <td>
-            {{ customer.name }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Phone number
-        </td>
-        <td>
-            {{ customer.phono }}
-        </td>
-    </tr>
-    <a class="btn btn-primary" href="{% url 'foodchain:cust_edit_profile' customer.pk %}"> Edit Profile</a>
-</table>
-</div>
-<div class="col-sm-8">
-<h2 align="center">Your orders</h2>
-    {% for i in customer.dishorder_set.all %}
+<div class="jumbotron">
+       <div class="jumbotron">
+            <div class="col-sm-4">
+             <img src="{{ customer.image.url }}" class="img-circle" alt="Cinque Terre" width="304" height="236">
+            </div>
+    <div class="col-sm-8">
+
+                        <table class="table">
+                    <tr>
+                        <td>user id</td>
+                        <td>
+                            {{ customer.details.id }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                           User Name
+                        </td>
+                        <td>
+                            {{ customer.details.username }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           Customer Name
+                        </td>
+                        <td>
+                            {{ customer.name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Phone number
+                        </td>
+                        <td>
+                            {{ customer.phono }}
+                        </td>
+                    </tr>
+                    <a class="btn btn-primary" href="{% url 'foodchain:cust_edit_profile' customer.pk %}"> Edit Profile</a>
+                </table>
+                </div>
+       </div>
+
+                <h2 align="center"><strong>Your orders</strong></h2>
+
+                    {% for i in customer.dishorder_set.all %}
 
 
-<div class="container">
-<div class ="divcol">
-    <p>Order ID {{ i.O_id }}</p>
-   <p>Dish Name {{ i.dishitem }}</p>
-    <p>Restaurent Name  {{ i.restaurent }}</p>
-    <p>Unit Price {{ i.dishitem.price }}</p>
-    <p>Quantity {{ i.quantity }}</p>
-     {% widthratio i.quantity 1 i.dishitem.price %}
-    <a class="btn btn-primary" href="{% url 'foodchain:dishitemdelete' i.O_id %}">Cancel</a>
+
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class=" col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+            <h2><strong>{{ i.dishitem }}</strong></h2>
+        </div>
+        <div class="panel-body">
+            <p><strong>Ordered Date   -</strong>  {{ i.dateofdate }}</p>
+          <p><strong>Order ID    -</strong>{{ i.O_id }} </p>
+          <p><strong>Restaurent Name   -</strong>  {{ i.restaurent }}</p>
+          <p><strong>Unit Price </strong> {{ i.dishitem.price }}</p>
+        </div>
+        <div class="panel-footer">
+          <h4>{{ i.quantity }}</h4>
+          <h4>Quantity</h4>
+            <h3> {% widthratio i.quantity 1 i.dishitem.price %}</h3>
+          <h4>Price</h4>
+          <a class="btn btn-primary" href="{% url 'foodchain:dishitemdelete' i.O_id %}">Cancel</a>
+        </div>
+      </div>
+         <img src="{{i.dish.image.url}}" class='img-responsive'>
     </div>
+  </div>
 </div>
-</div>
+
+  </div>
+
 {% endfor %}
 {% endblock %}

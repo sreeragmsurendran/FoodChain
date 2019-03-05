@@ -9,8 +9,11 @@
 
     </style>
  </head>
+<div class="jumbotron">
 <div class="well">
+
 <h1>Restaurent Profile</h1></div>
+
 <div class="col-sm-4">
  <img src="{{ restaurant.image_resr.url }}" class="img-circle" alt="Cinque Terre" width="304" height="236">
 <table class="table">
@@ -72,4 +75,5 @@
 <a class="btn btn-primary" href="{% url 'foodchain:rest_edit_profile' restaurant.pk %}"> Edit Profile</a>
 </div>
 
+</div>
 {% endblock %}

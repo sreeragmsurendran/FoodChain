@@ -1,53 +1,8 @@
-<!doctype html>
-{% load staticfiles %}
-
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:300,400,700,800|Open+Sans:300,400,700" rel="stylesheet">
-
-    <link rel="stylesheet" href="{% static 'css/foodorder/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/foodorder/css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'css/foodorder/css/owl.carousel.min.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/foodorder/css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'css/foodorder/css/aos.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/foodorder/css/bootstrap-datepicker.css' %}">
-    <link rel="stylesheet" href="{% static 'css/foodorder/css/jquery.timepicker.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/foodorder/fonts/ionicons/css/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/foodorder/fonts/fontawesome/css/font-awesome.min.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/foodorder/fonts/flaticon/font/flaticon.css' %}">
-
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="{% static 'css/foodorder/css/style.css' %}">
-
- <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
-
-    <script src="{% static 'css/foodorder/js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'css/foodorder/js/jquery-migrate-3.0.1.min.js' %}"></script>
-    <script src="{% static 'css/foodorder/js/popper.min.js' %}"></script>
-    <script src="{% static 'css/foodorder/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'css/foodorder/js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'css/foodorder/js/jquery.waypoints.min.js' %}"></script>
-
-    <script src="{% static 'css/foodorder/js/bootstrap-datepicker.js' %}"></script>
-    <script src="{% static 'css/foodorder/js/jquery.timepicker.min.js' %}"></script>
-    <script src="{% static 'css/foodorder/js/jquery.stellar.min.js' %}"></script>
-
-    <script src="{% static 'css/foodorder/js/aos.js' %}"></script>
-
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-
-    <script src="{% static 'css/foodorder/js/main.js' %}"></script>
-
-
+    <meta charset="UTF-8">
+    <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -60,83 +15,161 @@
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+    <style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+
+  background-image: url("media/home_image/back1.jpg");
+  height: 100%;
+
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+.tdStyle
+{
+background-image:url("media/home_image/");
+background-repeat:no-repeat;
+background-size:100%;
+}
+
+
+
+
+
+
+
+  .container-fluid {
+    padding: 60px 50px;
+  }
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+  .logo-small {
+    color: #f4511e;
+    font-size: 50px;
+  }
+  .logo {
+    color: #f4511e;
+    font-size: 200px;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+  .carousel-control.right, .carousel-control.left {
+   background-image: none;
+   color: #f4511e;
+  }
+  .carousel-indicators li {
+    border-color: #f4511e;
+  }
+  .carousel-indicators li.active {
+    background-color: #f4511e;
+  }
+  .item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    font-style: italic;
+    margin: 70px 0;
+  }
+  .item span {
+    font-style: normal;
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+  }
+
+
+
+
+
+
+
+</style>
+
     </head>
-<body>
+<body class="bg">
 
 <nav class="navbar navbar-inverse " >
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'foodchain:homein'%}">#FoodChain#</a>
+        <a class="navbar-brand" href="{% url 'foodchain:homein'%}"><h1><strong>#FoodChain#</strong></h1></a>
     </div>
     {% if user.is_authenticated %}
-      {% if perms.FoodChain.add_dishorder %}
+         {% if perms.FoodChain.add_dishorder %}
 
-    <ul class="nav navbar-nav">
-      <li><a href="{% url 'foodchain:homein'%}">HOME</a></li>
-         <li><a href="{% url 'foodchain:dishlist' %}">DISHES</a></li>
-        <li><a href="{% url 'foodchain:restorents' %}">RESTAURENTS</a></li>
-      <li><a href="{% url 'foodchain:places' %}">PLACES</a></li>
-        <li><a href="{% url 'foodchain:customerdet' user.customer.pk %}">PROFILE</a></li>
-    </ul>
-
-        {% elif perms.FoodChain.add_dishitem %}
-        <ul class="nav navbar-nav">
-                 <li><a href="{% url 'foodchain:homein' %}">HOME</a></li>
-             <li><a href="{% url 'foodchain:restitemlist' user.restorent.pk %}">YOUR DISHES</a></li>
-             <li><a href="{% url 'foodchain:restaurentorderlist' user.restorent.pk %}">ORDERS</a></li>
-            <li><a href="{% url 'foodchain:restaurantprofile' user.restorent.pk %}">PROFILE</a></li>
-        </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'foodchain:homein'%}"><strong>HOME</strong></a></li>
+                    <li><a href="{% url 'foodchain:dishlist' %}"><strong>DISHES</strong></a></li>
+                    <li><a href="{% url 'foodchain:restorents' %}"><strong>RESTAURENTS</strong></a></li>
+                    <li><a href="{% url 'foodchain:places' %}"><strong>PLACES</strong></a></li>
+                    <li><a href="{% url 'foodchain:customerdet' user.customer.pk %}"><strong>PROFILE</strong></a></li>
+                </ul>
 
 
+
+
+           {% elif perms.FoodChain.add_dishitem %}
+                                <ul class="nav navbar-nav">
+                                         <li><a href="{% url 'foodchain:homein' %}"><strong>HOME</strong></a></li>
+                                     <li><a href="{% url 'foodchain:restitemlist' user.restorent.pk %}"><strong>YOUR DISHES</strong></a></li>
+                                     <li><a href="{% url 'foodchain:restaurentorderlist' user.restorent.pk %}"><strong>ORDERS</strong></a></li>
+                                    <li><a href="{% url 'foodchain:restaurantprofile' user.restorent.pk %}"><strong>PROFILE</strong></a></li>
+                                </ul>
+
+
+        {% endif %}
       {% endif %}
-    {% endif %}
-    <ul class="nav navbar-nav navbar-right">
+         <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+            <li><a href="{% url 'logout' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span><strong> logout</strong></a></li>
         {% else %}
-      <li><a href="{% url 'foodchain:signup1' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="{% url 'login' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      {% endif %}
+            <li><a href="{% url 'foodchain:signup1' %}"><span class="glyphicon glyphicon-user"></span> <strong>Sign Up</strong></a></li>
+            <li><a href="{% url 'login' %}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span><strong> Login</strong></a></li>
+        {% endif %}
     </ul>
   </div>
 
 </nav>
- <div class="main-wrap">
-        <div class="cover_1">
-          <div class="img_bg" style="background-image: url(media/dish_pic/burger1.jpg);" data-stellar-background-ratio="0.5">
-
- <header class="site-header">
-        <div class="row align-items-center">
-          <div class="col-5 col-md-3">
-
-          </div>
-          <div class="col-2 col-md-6 text-center">
-            <a href="index.html" class="site-logo"><b>FC</b></a>
-          </div>
-          <div class="col-5 col-md-3 text-right menu-burger-wrap">
-            <a href="#" class="site-nav-toggle js-site-nav-toggle"><i></i></a>
-
-          </div>
-        </div>
-
-      </header> <!-- site-header -->
-
  <div class="container">
-
-
      {% block content %}
 
 
      {% endblock %}
  </div>
+
+
+
+
+<
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
-      </div>
-      </div>
- </div>
 
 </body>
-
 </html>
-

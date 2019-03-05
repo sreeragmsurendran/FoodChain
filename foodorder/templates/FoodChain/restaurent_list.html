@@ -6,16 +6,33 @@
   {% if restlist %}
   <div class="w3-row-padding w3-margin-top">
     {% for rest in restlist %}
-     <div class="w3-third" >
-       <div class="w3-card">
-        <a href="{% url 'foodchain:restaurentDetails' rest.pk %}">
-        <div>
-        <img src="{{rest.image_resr.url}}" class='img-responsive'>
-        </div>
-               <div>{{ rest.r_name }}</div>
-        </a>
-       </div>
-     </div>
+    
+
+
+
+      <div class="row">
+                    <div class=" col-xs-12">
+                      <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <h2><strong>{{ rest.r_name }}</strong></h2>
+                        </div>
+                        <div class="panel-body">
+                                  <a href="{% url 'foodchain:restaurentDetails' rest.pk %}">
+                                        <div>
+                                        <img src="{{rest.image_resr.url}}" class='img-responsive'>
+                                        </div>
+                                               <div>{{ rest.r_name }}</div>
+                                        </a>
+                        </div>
+                        </div>
+                      </div>
+                         <img src="{{i.dish.image.url}}" class='img-responsive'>
+                    </div>
+
+
+
+
+
     {% endfor %}
   </div>
   {% else %}

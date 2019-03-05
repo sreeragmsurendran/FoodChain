@@ -8,6 +8,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.timezone import now
 
 
 class Dish(models.Model):
@@ -90,7 +91,7 @@ class DishOrder(models.Model):
     quantity = models.IntegerField("Qty", validators=[MaxValueValidator(99), MinValueValidator(1)], default=1)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     restaurent = models.ForeignKey(Restorent, on_delete=models.CASCADE)
-
+    dateofdate = models.DateField("ordered date", default=now)
     def __str__(self):
         return '{}-{}({})'.format(self.restaurent, self.dishitem, self.quantity)
 
