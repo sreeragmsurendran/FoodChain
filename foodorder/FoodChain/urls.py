@@ -25,7 +25,8 @@ urlpatterns = [
     path('order_cancel_customer/<pk>',deleteorder,name='dishitemdelete'),
     #path('dishitemcreate1/',dish_item_add,name='dishitemcreate1'),
     path('edit_rest_prof/<int:pk>/',rest_edit_profile,name='rest_edit_profile'),
-    path('edit_customer_prof/<int:pk>',cust_edit_profile,name='cust_edit_profile'),
+    path('edit_customer_prof/<int:pk>/',cust_edit_profile,name='cust_edit_profile'),
+    path('dishitemdetails/<int:pk>/', DishItemDetail.as_view(), name='dish_item_details'),
 
 ]
 

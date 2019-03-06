@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "base_generic.html" %}
+{% block content %}
+<label>Name</label>
+{{ dish_item.name }}
+<br/>
+<label>Price</label>
+{{ dish_item.price }}
+<br/>
+<label>is Available</label>
+{% if dish_item.status %}<p>available</p>{% else %}<p>Not available</p>{% endif %}
+{% endblock %}

@@ -104,7 +104,7 @@ def order_create(request, pk):
 
 @permission_required('FoodChain.add_dishorder')
 def rest_create(request, pk):
-    listt = Restorent.objects.get(pk=pk).dishitem_set.all()
+    listt = Restorent.objects.get(r_id=pk).dishitem_set.all()
     dishorder = DishOrder()
     custid = request.user.customer
     if request.method == 'POST':
@@ -140,6 +140,7 @@ def signup(request):
 
         form = UserCreationForm()
         return render(request, 'registration/signup.html', {'form': form})
+
 
 def homepage(request):
     dlist = Dish.objects.all()[:5]
@@ -199,10 +200,12 @@ def rest_order_list(request, pk):
     rest = Restorent.objects.get(pk=pk).restaurantorder_set.all()
     return render(request, 'FoodChain/restaurant_order.html', {'list_order': rest})
 
+
 @permission_required('FoodChain.add_dishitem')
 def rest_item_list(request, pk):
     item = Restorent.objects.get(pk=pk).dishitem_set.all()
     return render(request, 'FoodChain/rest_items_list.html', {'rest_item': item})
+
 
 @permission_required('FoodChain.add_dishitem')
 def rest_edit_dish(request, pk):
@@ -213,11 +216,13 @@ def rest_edit_dish(request, pk):
         return redirect('foodchain:restitemlist', pk=edit.restaurent.pk)
     return render(request, 'FoodChain/rest_dish_edit.html', {'form': form})
 
+
 def deleteorder(request, pk):
     obj = get_object_or_404(DishOrder, O_id=pk)
     cust = obj.customer.id
     obj.delete()
     return redirect('foodchain:customerdet', pk=cust)
+
 
 @permission_required('FoodChain.add_dishitem')
 def dish_item_add(request):
@@ -226,16 +231,18 @@ def dish_item_add(request):
         form = DishItemCreate(request.POST)
         if form.is_valid():
             item.dish = form.cleaned_data.get('dish')
-            item.price= form.cleaned_data.get('price')
-            item.name= form.cleaned_data.get('name')
+            item.price = form.cleaned_data.get('price')
+            item.name = form.cleaned_data.get('name')
             item.restaurent = request.user.restorent
             item.save()
-            return redirect('foodchain:restitemlist',pk=request.user.restorent.pk )
+            return redirect('foodchain:restitemlist', pk=request.user.restorent.pk)
         else:
-            return render(request, 'FoodChain/dish_item_create.html',{'form':form})
+            return render(request, 'FoodChain/dish_item_create.html', {'form': form})
     else:
         form = DishItemCreate()
         return render(request, 'FoodChain/dish_item_create.html', {'form': form})
+
+
 @permission_required('FoodChain.add_dishitem')
 def rest_edit_profile(request, pk):
     edit = get_object_or_404(Restorent, pk=pk)
@@ -245,6 +252,7 @@ def rest_edit_profile(request, pk):
         return redirect('foodchain:restaurantprofile', pk=edit.pk)
     return render(request, 'FoodChain/rest_edit_profile.html', {'form': form})
 
+
 @permission_required('FoodChain.add_dishorder')
 def cust_edit_profile(request, pk):
     edit = get_object_or_404(Customer, pk=pk)
@@ -253,4 +261,10 @@ def cust_edit_profile(request, pk):
     if form.is_valid() and form1.is_valid():
         form.save()
         return redirect('foodchain:customerdet', pk=edit.pk)
-    return render(request, 'FoodChain/customer_edit_profile.html', {'form': form, 'form1':form1})
+    return render(request, 'FoodChain/customer_edit_profile.html', {'form': form, 'form1': form1})
+
+
+class DishItemDetail(generic.DetailView):
+    model = DishItem
+    context_object_name = 'dish_item'
+    template_name = 'FoodChain/dish_item_details.html'
